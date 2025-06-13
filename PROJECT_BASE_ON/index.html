@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Anime Character Finder</title>
+  <!-- ✅ Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-200 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full text-center animate-fade-in">
+    <h1 class="text-3xl font-bold text-purple-700 mb-6">🎌 Find Your Anime Match</h1>
+
+    <form id="animeForm" class="space-y-4">
+      <div>
+        <label for="gender" class="block text-sm font-medium text-gray-700">Select Gender:</label>
+        <select id="gender" required class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400">
+          <option value="">--Choose--</option>
+          <option value="waifu">Female</option>
+          <option value="husbando">Male</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="birthdate" class="block text-sm font-medium text-gray-700">Enter Birthdate:</label>
+        <input type="date" id="birthdate" required class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400">
+      </div>
+
+      <button type="submit" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition">✨ Get Character</button>
+    </form>
+
+    <div id="result" class="hidden mt-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Anime Character</h2>
+      <img id="charImage" src="" alt="Character" class="rounded-xl w-64 h-64 object-cover mx-auto shadow-lg border-4 border-purple-300" />
+      <p class="mt-2 text-sm text-gray-600">(Based on your birthdate and selected gender)</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

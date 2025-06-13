@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6">🔮 Future Predictor</h2>
+    <form id="predictionForm" class="space-y-4">
+      <div>
+        <label class="block font-medium">Name</label>
+        <input type="text" id="name" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <div>
+        <label class="block font-medium">Birthdate</label>
+        <input type="date" id="birthdate" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Predict Future</button>
+    </form>
+
+    <div id="result" class="mt-6 text-center hidden">
+      <h3 class="text-xl font-semibold mb-2">🔮 Prediction for <span id="userName"></span></h3>
+      <p id="predictionText" class="text-gray-700"></p>
+      <p class="text-sm mt-2 text-gray-500"><span id="sign"></span> | Lucky Number: <span id="lucky"></span></p>
+    </div>
+  </div>
+
+  <script>
+    function getZodiacSign(day, month) {
+      const zodiac = ["capricorn", "aquarius", "pisces", "aries", "taurus", "gemini",
+                      "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius"];
+      const last_day = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
+      return (day > last_day[month - 1]) ? zodiac[month % 12] : zodiac[month - 1];
+    }
+
+    document.getElementById("predictionForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const birthdate = new Date(document.getElementById("birthdate").value);
+      const day = birthdate.getDate();
+      const month = birthdate.getMonth() + 1;
+      const sign = getZodiacSign(day, month);
+
+      const response = await fetch(`https://aztro.sameerkumar.website/?sign=${sign}&day=today`, {
+        method: "POST"
+      });
+
+      const data = await response.json();
+
+      document.getElementById("userName").textContent = name;
+      document.getElementById("predictionText").textContent = data.description;
+      document.getElementById("sign").textContent = sign.charAt(0).toUpperCase() + sign.slice(1);
+      document.getElementById("lucky").textContent = data.lucky_number;
+
+      document.getElementById("result").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>

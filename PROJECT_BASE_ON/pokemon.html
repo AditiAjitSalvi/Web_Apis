@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pokémon Character Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-yellow-300 to-red-500 min-h-screen flex items-center justify-center">
+  <div class="bg-white border-4 border-blue-500 rounded-3xl shadow-2xl p-10 w-full max-w-lg text-center">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png" alt="Pokéball" class="w-16 mx-auto mb-4">
+    <h1 class="text-3xl text-red-600 font-bold mb-6">Pokémon Predictor</h1>
+
+    <form id="animeForm" class="space-y-4">
+      <div>
+        <label class="block text-left mb-1 text-blue-800">Gender</label>
+        <select id="gender" required class="w-full border-2 border-blue-400 rounded-md px-4 py-2 focus:outline-none">
+          <option value="">-- Select --</option>
+          <option value="2">Male</option>
+          <option value="1">Female</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-left mb-1 text-blue-800">Birthdate</label>
+        <input type="date" id="birthdate" required class="w-full border-2 border-blue-400 rounded-md px-4 py-2 focus:outline-none">
+      </div>
+
+      <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-all">
+        🔍 Reveal My Pokémon
+      </button>
+    </form>
+
+    <div id="result" class="mt-6 hidden">
+  <h2 class="text-xl text-yellow-600">🎉 Your Pokémon is:</h2>
+  <img id="charImage" src="" alt="Pokémon" class="w-40 mx-auto mt-4 border-4 border-yellow-400 rounded-xl shadow-md">
+  <p id="pokeName" class="mt-4 text-lg text-red-700 font-bold"></p>
+</div>
+<button type="button" id="clearBtn" class="w-full bg-yellow-300 text-blue-900 py-2 rounded-md border-4 border-blue-600 shadow-md hover:bg-yellow-400 hover:scale-105 transition-all duration-200 font-bold">
+  Clear
+</button>
+
+
+  <!-- External script here -->
+  <script src="pokemon.js"></script>
+</body>
+</html>
